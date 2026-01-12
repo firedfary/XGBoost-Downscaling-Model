@@ -1,2 +1,2 @@
 # XGBoost-Downscaling-Model
-XGBoost
+A XGBoost downscaling model

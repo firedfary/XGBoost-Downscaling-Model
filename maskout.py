@@ -27,8 +27,11 @@ def shp2clip(originfig,ax,region_shpfile,clabel=None,vcplot=None):
         else:
             originfig.set_clip_path(clip)
     else:
-        for contour in originfig.collections:
-            contour.set_clip_path(clip)
+        if hasattr(originfig, 'collections'):  # 兼容旧版本
+            for contour in originfig.collections:
+                contour.set_clip_path(clip)
+        else:  # 处理新版本 GeoContourSet
+            originfig.set_clip_path(clip)
     if  clabel:
         clip_map_shapely = ShapelyPolygon(vertices)
         for text_object in clabel:
